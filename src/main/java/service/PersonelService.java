@@ -9,14 +9,31 @@ import java.util.List;
 public class PersonelService implements IPersonelService{
 
     private List<Personel> personelList=new ArrayList<Personel>();
+    private  Long idGenerator=1L; //database'de otomatik olarak birer birer arttırma işlemini burada bu şekilde yapıyoruz.
 
+    private static PersonelService instance;
+
+
+    /**
+     * PersonelService nesnenin bir kere new anahtar sözcüğü ile oluşturulması için Singleton Desing Pattern uygulanıyor.
+     * Nesnenin bir kere oluşmasından sorumlu tasarım desenidir.
+     * @return
+     */
+    public static PersonelService getInstance() {
+
+        if(instance==null){
+            instance=new PersonelService();
+        }
+
+        return instance;
+    }
 
     public void kaydet(Personel personel) {
 
         if(personel!=null){
 
             Personel yeniPersonel=new Personel(); //hashcode için yeni obje oluşturulur. oluşturmazsak aynı nesneyi ekler ve üstüne ekler tek bir kayıt olur
-            yeniPersonel.setId(personel.getId());
+            yeniPersonel.setId(idGenerator);
             yeniPersonel.setDepartman(personel.getDepartman());
             yeniPersonel.setIseGirisTarihi(personel.getIseGirisTarihi());
             yeniPersonel.setMaas(personel.getMaas());
@@ -31,6 +48,7 @@ public class PersonelService implements IPersonelService{
             yeniPersonel.setSicilNo(personel.getSicilNo());
             yeniPersonel.setUnvan(personel.getUnvan());
 
+            idGenerator++;
             personelList.add(yeniPersonel);
         }
     }

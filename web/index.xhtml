@@ -4,8 +4,109 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title> Personel Tanımlama </title>
+</h:head>
+
+<h:body>
+    <p:growl globalOnly="true" id="growl"/>
+    <p:panel>
+        <h:form>
+            <p:panelGrid id="personel_tanimla_grid" columns="3">
+
+
+                <p:outputLabel value="Adi: "/>
+                <p:inputText id="adi_input" value="#{personelView.personel.ad}" required="true"
+                             requiredMessage="Bu Alan Zorunludur."/>
+                <p:message for="adi_input" display="text,icon"/>
+
+                <p:outputLabel value="Soyadi: "/>
+                <p:inputText id="soyadi_input" value="#{personelView.personel.soyad}" required="true"
+                             requiredMessage="Bu Alan Zorunludur."/>
+                <p:message for="soyadi_input" display="text,icon"/>
+
+                <p:outputLabel value="Doğum Tarihi: "/>
+                <p:calendar id="dogum_tarihi_calender" value="#{personelView.personel.dogumTarihi}"/>
+                <p:message for="dogum_tarihi_calender" display="text,icon"/>
+
+                <p:outputLabel value="TC Numarası: "/>
+                <p:inputText id="tc_input" value="#{personelView.personel.tcNo}" maxlength="11" minLength="11"
+                             required="true"
+                             requiredMessage="Bu Alan Zorunludur."/>
+                <p:message for="tc_input" display="text,icon"/>
+
+                <p:outputLabel value="Telefon Numarası:"/>
+                <p:inputMask mask="(999) 999-99-99" id="tel_no_input" maxlength="15"
+                             value="#{personelView.personel.telNo}"/>
+                <p:message for="tel_no_input" display="text,icon"/>
+
+                <p:outputLabel value="Maaş:"/>
+                <p:spinner id="maas_spinner"
+                           min="2200"
+                           stepFactor="0.75"
+                           maxlength="5000"
+                           value="#{personelView.personel.maas}"/>
+                <p:message for="maas_spinner" display="text,icon"/>
+
+                <p:outputLabel value="İşe Giriş Tarihi: "/>
+                <p:calendar id="is_giris_calender" value="#{personelView.personel.iseGirisTarihi}"/>
+                <p:message for="is_giris_calender" display="text,icon"/>
+
+
+                <p:outputLabel value="Sicil Numarası: "/>
+                <p:inputText id="sicil_input" value="#{personelView.personel.sicilNo}"  maxlength="8"/>
+                <p:message for="sicil_input" display="text,icon"/>
+
+                <p:outputLabel value="Departman: "/>
+                <p:selectOneMenu id="departman_input" value="#{personelView.personel.departman}">
+                    <f:selectItem  noSelectionOption="true" itemLabel="Seçiniz.." itemValue="#{null}"/>
+                   <f:selectItems value="#{personelView.departmanList}"/>
+                </p:selectOneMenu>
+                <p:message for="departman_input" display="text,icon"/>
+
+                <p:outputLabel value="Unvan: "/>
+                <p:inputText id="unvan_input" value="#{personelView.personel.unvan}"
+                             required="true" requiredMessage="Bu Alan Zorunludur." maxlength="15"/>
+                <p:message for="unvan_input" display="text,icon"/>
+
+            </p:panelGrid>
+
+            <p:commandButton value="Kaydet" update="personel_tanimla_grid growl"
+                             actionListener="#{personelView.onKaydet}"/>
+
+        </h:form>
+    </p:panel>
+
+    <p:panel>
+
+            <p:dataTable id="personel_listesi" var="per" value="#{personelView.personelList}">
+
+                <p:column headerText="Id">
+                    <h:outputText value="#{per.id}"/>
+                </p:column>
+
+                <p:column headerText="Adı">
+                    <h:outputText value="#{per.ad}"/>
+                </p:column>
+
+                <p:column headerText="Soyadı">
+                    <h:outputText value="#{per.soyad}"/>
+                </p:column>
+
+                <p:column headerText="Doğum Tarihi">
+                    <h:outputText value="#{per.dogumTarihi}"/>
+                </p:column>
+
+                <p:column headerText="Telefon Numarası">
+                    <h:outputText value="#{per.telNo}"/>
+                </p:column>
+
+            </p:dataTable>
+
+    </p:panel>
+
+</h:body>
 </html>
