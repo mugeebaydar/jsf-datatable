@@ -1,10 +1,11 @@
 package entity;
 
+import org.primefaces.push.annotation.Singleton;
+
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "kisi")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Kisi extends BaseEntity {
     @Column(name = "ad",nullable = false, length = 30)
     private String ad;
