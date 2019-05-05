@@ -62,4 +62,12 @@ public class PersonelView {
     public void setPersonelList(List<Personel> personelList) {
         this.personelList = personelList;
     }
+
+    public List<String> getDepartmanList() {
+        return departmanList;
+    }
+
+    public void setDepartmanList(List<String> departmanList) {
+        this.departmanList = departmanList;
+    }
 }

@@ -57,13 +57,13 @@
 
 
                 <p:outputLabel value="Sicil Numarası: "/>
-                <p:inputText id="sicil_input" value="#{personelView.personel.sicilNo}"  maxlength="8"/>
+                <p:inputText id="sicil_input" value="#{personelView.personel.sicilNo}" maxlength="8"/>
                 <p:message for="sicil_input" display="text,icon"/>
 
                 <p:outputLabel value="Departman: "/>
                 <p:selectOneMenu id="departman_input" value="#{personelView.personel.departman}">
-                    <f:selectItem  noSelectionOption="true" itemLabel="Seçiniz.." itemValue="#{null}"/>
-                   <f:selectItems value="#{personelView.departmanList}"/>
+                    <f:selectItem noSelectionOption="true" itemLabel="Seçiniz.." itemValue="#{null}"/>
+                    <f:selectItems value="#{personelView.departmanList}"/>
                 </p:selectOneMenu>
                 <p:message for="departman_input" display="text,icon"/>
 
@@ -74,14 +74,14 @@
 
             </p:panelGrid>
 
-            <p:commandButton value="Kaydet" update="personel_tanimla_grid growl"
+            <p:commandButton value="Kaydet" update="personel_tanimla_grid growl :liste_form:personel_listesi"
                              actionListener="#{personelView.onKaydet}"/>
 
         </h:form>
     </p:panel>
 
     <p:panel>
-
+        <h:form id="liste_form">
             <p:dataTable id="personel_listesi" var="per" value="#{personelView.personelList}">
 
                 <p:column headerText="Id">
@@ -103,8 +103,13 @@
                 <p:column headerText="Telefon Numarası">
                     <h:outputText value="#{per.telNo}"/>
                 </p:column>
+                <p:column headerText="Departman">
+                    <h:outputText value="#{per.departman}"/>
+                </p:column>
 
             </p:dataTable>
+
+        </h:form>
 
     </p:panel>
 
