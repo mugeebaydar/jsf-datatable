@@ -77,12 +77,15 @@ public class PersonelView {
         switch (tempUnvan) {
             case "Stajyer":
                 personel.setMaas(1000.0);
+                personel.setUnvan(tempUnvan);
                 break;
             case "Uzman":
                 personel.setMaas(5000.0);
+                personel.setUnvan(tempUnvan);
                 break;
             default:
                 personel.setMaas(2200.0);
+                personel.setUnvan(tempUnvan);
                 break;
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unvan Seçildi."));

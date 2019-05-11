@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name = "personel")
 public class Personel extends Kisi {
 
     @Column(name = "maas",nullable = false)
@@ -19,6 +19,9 @@ public class Personel extends Kisi {
     private String departman;
     @Column(name = "unvan")
     private String unvan;
+    @Lob
+    @Column(name = "aciklama")
+    private String aciklama;
 
     public Personel(){
 

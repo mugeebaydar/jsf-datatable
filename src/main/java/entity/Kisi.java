@@ -4,8 +4,8 @@ import org.primefaces.push.annotation.Singleton;
 
 import javax.persistence.*;
 import java.util.Date;
-
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Kisi extends BaseEntity {
     @Column(name = "ad",nullable = false, length = 30)
     private String ad;
